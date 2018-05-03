@@ -11,6 +11,8 @@ import UserSignIn from './UserSignIn.jsx';
 import { HashRouter } from 'react-router-dom'
 import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import './styles/styles.scss';
+import Toggle from 'react-bootstrap-toggle';
+
 
   // Welcome to our root component! Here we used react router to make it possible for the user to navigate 
   // the different views of our project.
@@ -23,16 +25,23 @@ class Main extends React.Component {
       //The next three values are used in the Signin component, to toggle view SigninForm and SignedIn and to keep the mechanic in his profile page even when he leave the tab, untill he sign out
       v : false,
       username: '',
-      services: []
+      services: [],
+      isMechanic: false
     }
+
+    this.onToggle = this.onToggle.bind(this);
     this.toggle = this.toggle.bind(this)
     this.MySignin = this.MySignin.bind(this)
     this.MyHome = this.MyHome.bind(this)
     this.setUsername = this.setUsername.bind(this)
-     this.Myprofile = this.Myprofile.bind(this)
+    this.Myprofile = this.Myprofile.bind(this)
     this.setServices = this.setServices.bind(this)
     this.MyUserSignIn = this.MyUserSignIn.bind(this)
     
+  }
+
+  onToggle() {
+    this.setState({ isMechanic: !this.state.isMechanic });
   }
 
   setUsername(user){
@@ -87,7 +96,7 @@ class Main extends React.Component {
 
 //HashRouter is used here so fixed urls in the browser will take you to the wanted page and more importantly to make redirecting possible
   render(){
-    if (this.state.v === false){
+    if (this.state.v === false && this.state.isMechanic === true){
       return (
     <Router >
   <HashRouter>
@@ -99,9 +108,58 @@ class Main extends React.Component {
           </div>
           <ul className="nav navbar-nav nav pull-right">
             <li><Link to="/signin" >Signinas Mechanic</Link></li>
-            <li><Link to="/userSignin" >Signin</Link></li>
             <li><Link to="/signup">Signup as Mechanic</Link></li>
-             <li><Link to="/userSignup">Signup</Link></li>
+            <li>
+           <Toggle
+          style={{margin: "7px 0px 0px 0px"}}
+          onClick={this.onToggle}
+          on={<h5>Mechanic</h5>}
+          off={<h5>Not Mechanic</h5>}
+          size="xs"
+          onstyle="success"
+          offstyle="info"
+          active={this.state.isMechanic}
+        />
+        </li>
+          </ul>
+        </div>
+      </nav>
+      <Route path="/home" component={this.MyHome} />
+      <Route path="/signin" render={this.MySignin} />
+      <Route exact path="/" component={Intro} />
+      <Route path="/signup" component={Signup} />
+      <Route path="/userSignup" component={UserSignUp} />
+      <Route path="/userSignin" component={this.MyUserSignIn} />
+    </div>
+    </HashRouter>
+  </Router>
+  
+)
+    } else if (this.state.v === false && this.state.isMechanic === false){
+      return (
+    <Router >
+  <HashRouter>
+    <div >
+      <nav className="navbar navbar-inverse navbar-fixed-top">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <a className="navbar-brand " href="#" style={{color:'#E9AB17'}}>Handy Neighbors</a>
+          </div>
+          <ul className="nav navbar-nav nav pull-right">
+            <li><Link to="/userSignin" >Signin</Link></li>
+            <li><Link to="/userSignup">Signup</Link></li>
+            <li>
+           <Toggle
+          style={{margin: "7px 0px 0px 0px"}}
+          onClick={this.onToggle}
+          on={<h5>Mechanic</h5>}
+          off={<h5>Not Mechanic</h5>}
+          size="xs"
+          onstyle="success"
+          offstyle="info"
+          active={this.state.isMechanic}
+        />
+        </li>
           </ul>
         </div>
       </nav>
