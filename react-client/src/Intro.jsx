@@ -25,12 +25,12 @@ class Intro extends React.Component {
 		 <Row className="show-grid">
 		    <Col md={6}>
 			    <a  href="#/home" style={{textDecoration: 'none'}}>
-							<img style={{'borderRadius': '15px', 'border' : 'solid', 'borderColor' : 'black', borderWidth:'thick'}} src="https://media.gettyimages.com/vectors/man-standing-near-a-broken-car-vector-id667707884" height="100%" width="100%"/>
+							<img style={{'borderRadius': '15px', 'border' : 'solid', 'borderColor' : 'black', borderWidth:'thick'}} src="https://images.clipartuse.com/f115a3553867818f419319a62311d331_broken-fender-clip-art-vector-images-illustrations-istock_612-383.jpeg" height="100%" width="100%"/>
 				</a>
 			</Col>
 			<Col md={6}>
 				<a   href="#/signup" style={{textDecoration: 'none'}}>
-					<img style={{'borderRadius': '15px', 'border' : 'solid', 'borderColor' : 'black', borderWidth:'thick'}} src="https://media.istockphoto.com/vectors/auto-mechanic-vector-id495279953" height="100%" width="100%"/>
+					<img style={{'borderRadius': '15px', 'border' : 'solid', 'borderColor' : 'black', borderWidth:'thick'}} src="https://media.istockphoto.com/vectors/auto-mechanic-vector-id495279953?k=6&m=495279953&s=612x612&w=0&h=--8i5pbVdpIKWLUg9PPSXfhrSCja1HVPuBoDUaI8sT8=" height="351px" width="100%"/>
 				</a>
 			</Col>
 		</Row>
